@@ -5,13 +5,18 @@ import './Othercities.css'
 
 export default class Othercities extends React.Component {
 
+    handleClick() {
+        // e.preventDefault();
+        console.log('The link was clicked.');
+    }
+
     render():JSX.Element {
       return (
         <div className="othercities card">
             <div className="cities-panel">
                 <div>
                     <span>&#9656;</span>
-                    <button>Warszawa</button>
+                    <button onClick={this.handleClick}>Warszawa</button>
                 </div>
                 <div>
                     <span>&#9656;</span>
