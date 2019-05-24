@@ -1,0 +1,34 @@
+@import "../App.less";
+
+
+header {
+    background-color: @accentDarkColor;
+    color: @textMainColorLight;
+    .boxShadow(2px 2px 5px 0px @accentGray);
+    position: relative;
+    div.header-title {
+        font-size: 22px;
+        padding: 15px 20px;
+        
+    }
+    #butRefresh {
+        position: absolute;
+        border: none;
+        cursor: pointer;
+        height: 24px;
+        
+        margin-right: 16px;
+        opacity: 0.8;
+        outline: none;
+        overflow: hidden;
+        right: 0;
+        top: 15px;
+        width: 24px;
+        background: url('/images/refresh.svg') center center no-repeat;
+        transition: opacity 0.33s;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}

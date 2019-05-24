@@ -1,0 +1,34 @@
+@charset 'UTF-8';
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap&subset=latin-ext');
+
+@import './normalize.less';
+
+
+@backgroundColor: #E1E1E1;
+@textMainColor: #262626;
+@textMainColorLight: #FAFAFA;
+@accentDarkColor: #3F51B5;
+@accentLightColor: #3F51B5;
+@accentGray: rgba(136,136,136,0.73);
+
+* {
+    box-sizing: border-box;
+}
+
+.boxShadow(@ho) {
+    box-shadow: @ho;
+    -webkit-box-shadow: @ho;
+    -moz-box-shadow: @ho;
+    -ms-box-shadow: @ho;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: @backgroundColor;
+    color: @textMainColor;
+}
