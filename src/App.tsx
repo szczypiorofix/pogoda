@@ -5,17 +5,13 @@ import Othercities from './components/Othercities'
 import Currentcity from './components/Currentcity'
 
 
-
-
 function App() {
   return (
-    
     <div className="App">
         <Mainheader />
         <Othercities />
         <Currentcity />
     </div>
-    
   );
 }
 

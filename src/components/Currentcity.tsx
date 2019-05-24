@@ -5,7 +5,6 @@ import { WiDaySunny } from 'react-icons/wi';
 import { WiDayRainMix } from 'react-icons/wi';
 import { WiDaySunnyOvercast } from 'react-icons/wi';
 
-import './Card.css'
 import './Currentcity.css'
 
 
