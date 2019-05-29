@@ -1,11 +1,19 @@
 interface WeatherDetails {
+    
+    apparentTemperatureHigh:number;
+    apparentTemperatureHighTime:number;
+    apparentTemperaturLow:number;
+    apparentTemperatureLowTime:number;
+    
+    temperatureHigh:number;
+    temperatureLow:number;
+    
     time: number;
     summary: string;
     icon: string;
     precipIntensity: number;
     precipProbability: number;
-    temperature: number;
-    apparentTemperature: number;
+    
     dewPoint: number;
     humidity: number;
     pressure: number;
@@ -18,7 +26,7 @@ interface WeatherDetails {
     ozone: number;
 }
 
-interface WeatherHourlySummary {
+interface WeatherDaily {
     summary: string;
     icon: string;
     name: string;
@@ -29,6 +37,15 @@ export interface City {
     latitude: number;
     longitude: number;
     timezone: string;
-    hourly: WeatherHourlySummary;
+    daily: WeatherDaily;
     name: string;
+    summary: string;
+}
+
+  
+export default interface CommonData {
+    dateAndTime: string;
+    weatherData: City[];
+    currentCity: number;
+    weatherDataLoaded:boolean;
 }
