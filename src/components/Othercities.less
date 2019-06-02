@@ -8,20 +8,29 @@ div .othercities {
         flex-wrap: wrap;
         justify-content: space-evenly;
         color: @textMainColor;
-        span {
-            color: @accentGray;
-        }
-        button {
-            margin: 5px 5px 5px 0;
+        // background-color: @accentGray;
+        
+        div.othercitiesBlock {
+            // transition: 0.5s;
+            border-radius: 2px;
             border: none;
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 16px;
-            background-color: transparent;
-            padding: 10px 10px 10px 0;
-            outline: none;
-            &:hover {
-                cursor: pointer;
-                text-decoration: underline;
+            padding: 5px 10px;
+            // background-color: @accentGray;
+            cursor: pointer;
+
+            button {
+                margin: 5px 5px 5px 0;
+                border: none;
+                font-family: 'Noto Sans', sans-serif;
+                font-size: 16px;
+                background-color: transparent;
+                padding: 10px 10px 10px 2px;
+                outline: none;
+                &:hover {
+                    cursor: pointer;
+                    // text-decoration: underline;
+                }
+                
             }
             
         }

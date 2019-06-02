@@ -3,49 +3,9 @@ import './App.css';
 import Mainheader from './components/Mainheader';
 import OtherCities from './components/OtherCities';
 import CurrentCity from './components/CurrentCity';
+import Apod from './components/Apod';
 import { City } from './models/WeatherData';
 import CommonData from './models/WeatherData';
-
-const defaultCity:City = {
-    latitude: 0,
-    longitude: 0,
-    timezone: "",
-    daily: 
-      {
-        "summary": "",
-        "icon": "",
-        "name": "",
-        "data": [
-          {
-            "apparentTemperaturLow": 0,
-            "apparentTemperatureLowTime": 0,
-            "apparentTemperatureHigh": 0,
-            "apparentTemperatureHighTime": 0,
-            "icon": "",
-            "ozone": 0,
-            "precipIntensity": 0,
-            "precipProbability": 0,
-            "pressure": 0,
-            "summary": "",
-            "time": 0,
-            "visibility": 0,
-            "windBearing": 0,
-            "windGust": 0,
-            "windSpeed": 0,
-            "uvIndex": 0,
-            "temperatureHigh": 0,
-            "temperatureLow": 0,
-            "dewPoint": 0,
-            "humidity": 0,
-            "cloudCover": 0
-          }
-        ]
-      }
-      
-    ,
-    name: "",
-    summary: ""
-};
 
 
 export default class App extends React.Component<{}, CommonData> {
@@ -53,10 +13,15 @@ export default class App extends React.Component<{}, CommonData> {
   private intervalId?: NodeJS.Timeout;
 
   state: Readonly<CommonData> = {
-    dateAndTime: ".",
+    dateAndTime: new Date().toLocaleDateString(),
     weatherData: [],
     currentCity: 0,
-    weatherDataLoaded: false
+    weatherDataLoaded: false,
+    date: "",
+    time: "",
+    apod: {
+      copyright:"", title:"", url:"", date:"", explanation: "", hdurl:"", media_type:""
+    }
   };
 
   onCityChange = (city:number) => {
@@ -80,11 +45,15 @@ export default class App extends React.Component<{}, CommonData> {
       var cities:City[] = resp.cities;
       this.setState({
           weatherData: cities,
-          weatherDataLoaded: true
+          weatherDataLoaded: true,
+          apod: resp.apod,
+          time: resp.time,
+          date: resp.date
       });
     });
 
-    this.intervalId = setInterval( () => this.doTimeTick(), 500);
+    this.doTimeTick();
+    // this.intervalId = setInterval( () => this.doTimeTick(), 10000);
 
   }
 
@@ -101,7 +70,7 @@ export default class App extends React.Component<{}, CommonData> {
     let today:Date = new Date();
     this.setState({
         dateAndTime:
-           today.getDate()+" "+months[today.getMonth()]+" "+today.getFullYear()+" "+today.toLocaleTimeString()
+           today.getDate()+" "+months[today.getMonth()]+" "+today.getFullYear()
     });
   }
 
@@ -112,8 +81,18 @@ export default class App extends React.Component<{}, CommonData> {
           <OtherCities onCityChange={this.onCityChange} />
           <CurrentCity
             dateAndTime = { this.state.dateAndTime }
-            city        = { this.state.weatherData[this.state.currentCity] ? this.state.weatherData[this.state.currentCity] : defaultCity }
+            city        = { this.state.weatherData[this.state.currentCity]}
           />
+          <Apod
+            copyright = {this.state.apod.copyright}
+            url = {this.state.apod.url}
+            title = {this.state.apod.title}
+            explanation = {this.state.apod.explanation}
+            date = {this.state.apod.date}
+            hdurl = {this.state.apod.hdurl}
+            media_type = {this.state.apod.media_type}
+          />
+          <p style={{textAlign:'center', fontSize:'10px'}}>Data aktualizacji: {this.state.time}, {this.state.date}</p>
       </div>
     );
   }

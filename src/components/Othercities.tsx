@@ -14,45 +14,45 @@ export default class OtherCities extends React.Component<OtherCitiesInterface,{}
         return (
             <div className="othercities card">
                 <div className="cities-panel">
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(0)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(0)}>Warszawa</button>
+                        <button>Warszawa</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(1)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(1)}>Kraków</button>
+                        <button>Kraków</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(2)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(2)}>Gdańsk</button>
+                        <button>Gdańsk</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(3)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(3)}>Poznań</button>
+                        <button>Poznań</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(4)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(4)}>Wrocław</button>
+                        <button>Wrocław</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(5)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(5)}>Szczecin</button>
+                        <button>Szczecin</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(6)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(6)}>Lublin</button>
+                        <button>Lublin</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(7)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(7)}>Rzeszów</button>
+                        <button>Rzeszów</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(8)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(8)}>Kielce</button>
+                        <button>Kielce</button>
                     </div>
-                    <div>
+                    <div className="othercitiesBlock" onClick={() => onCityChange(9)}>
                         <span>&#9656;</span>
-                        <button onClick={() => onCityChange(9)}>Suwałki</button>
+                        <button>Suwałki</button>
                     </div> 
                 </div>
             </div>

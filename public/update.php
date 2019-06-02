@@ -5,6 +5,7 @@ define('CONFIG_FILE', './config.ini');
 require_once 'config.php';
 
 define('WEATHER_API_KEY', Config::get('DARKSKY_API_KEY'));
+define('NASA_API_KEY', Config::get('NASA_API_KEY'));
 
 
 $args = '';
@@ -67,6 +68,7 @@ $locations = [
 
 // https://api.darksky.net/forecast/DARKSKY_API_KEY/52.23,21.00?lang=pl&exclude=hourly,currently,minutely,flags,alerts&units=si
 
+// https://api.nasa.gov/planetary/apod?api_key=NASA_API_KEY
 
 foreach($locations as $location => $name) {
 
@@ -88,6 +90,22 @@ foreach($locations as $location => $name) {
     $results['cities'][] = $dataFromAPI;
 
 }
+
+$c = curl_init();
+curl_setopt($c, CURLOPT_HEADER, 0);
+curl_setopt($c, CURLOPT_VERBOSE, 0);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($c, CURLOPT_URL, 'https://api.nasa.gov/planetary/apod?api_key='.NASA_API_KEY);
+curl_setopt($c, CURLOPT_HTTPGET, 1);
+$data = curl_exec($c);
+echo curl_error($c);
+curl_close($c);
+
+$dataFromAPI = json_decode($data);
+$results['apod'] = $dataFromAPI;
+
+$results['date'] = date("d.m.Y");
+$results['time'] = date("H:i:s");
 
 $fp = fopen('weather.json', 'w');
 fwrite($fp, json_encode($results));

@@ -5,13 +5,13 @@
 div.current-city {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-
-    
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     div.city-info {
         padding: 10px;
         display: flex;
         flex-direction: column;
+        align-items: center;
         
         svg.weather-icon {
             width: 8em;
@@ -28,7 +28,7 @@ div.current-city {
         span.current-date {
             padding: 5px;
             margin:  10px 0;
-            font-size: 24px;
+            font-size: 20px;
         }
     }
     
@@ -44,6 +44,7 @@ div.current-city {
             &.summary {
                 font-size: 18px;
                 font-weight: bold;
+                min-width: 400px;
             }
         }
     }
@@ -89,25 +90,35 @@ div.nextdays {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-
+    // background-color: #eeeeff;
     div.day {
         padding: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        cursor: pointer;
+        font-weight: bold;
+        // transition: 0.3s;
 
         span.weekday-name {
             font-size: 20px;
-            margin: 5px;
+            margin: 5px;    
         }
-        .weekday-icon {
-            width: 4em;
-            height: 4em;
+        svg.weekday-icon {
+            width: 5em;
+            height: 5em;
             color: @textMainColor;
+        }
+        span.weekday-date {
+            font-size: 12px;
         }
         span.weekday-temp {
             margin: 5px;
             font-size: 18px;
         }
+
+        // &:hover {
+        //     background-color: #eeeeee;
+        // }
     }
 }
