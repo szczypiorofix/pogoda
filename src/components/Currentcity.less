@@ -1,124 +1,146 @@
 @import "../App.less";
 
 
-
-div.current-city {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    div.city-info {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        svg.weather-icon {
-            width: 8em;
-            height: 8em;
-            color: @textMainColor;
-            text-align: center;
-        }
-        span.city-name {
-            padding: 5px;
-            margin:  10px 0;
-            font-size: 32px;
-            font-weight: bold;
-        }
-        span.current-date {
-            padding: 5px;
-            margin:  10px 0;
-            font-size: 20px;
-        }
+div.card.citypanel {
+    background: url("/images/bg.jpg");
+    background-color: @accentDarkColor;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: @textMainColorLight;
+    z-index: 0;
+    div.bg-div {
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-color: @accentDarkColor;
     }
+    div.current-city {        
+        display: grid;
+        grid-template-rows: auto;
+        @media @desktop {
+            grid-template-columns: auto auto auto;
+            grid-template-areas: 
+            "icon summary summary"
+            "icon details1 details2";
+        }
+        @media @tablet {
+            grid-template-columns: auto auto;
+            grid-template-areas: 
+            "icon summary"
+            "icon details1"
+            "icon details2";
+        }
+        @media @mobile {
+            grid-template-columns: auto;
+            grid-template-areas: 
+            "icon"
+            "summary"
+            "details1"
+            "details2";
+        }
     
-    div.city-weather {
-        font-size: 18px;
-        padding: 10px;
-        margin-top: 16px;
-        display: flex;
-        flex-direction: column;
-        span {
-            margin: 10px 0;
-            font-size: 16px;
-            &.summary {
-                font-size: 18px;
+        div.city-info {
+            grid-area: icon;
+            padding: 10px;        
+            justify-self: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            svg.weather-icon {
+                width: 8em;
+                height: 8em;
+                text-align: center;
+            }
+            p.city-name {
+                font-size: 32px;
                 font-weight: bold;
-                min-width: 400px;
+                margin: 0;
+            }
+            p.current-date {
+                font-size: 20px;
+            }
+        }
+        
+    
+        h3.summary {
+            grid-area: summary;
+            font-size: 18px;
+            font-weight: bold;
+            justify-self: start;
+            @media @mobile {
+                justify-self: center;
+            }
+        }
+        div.city-weather {
+            @media @mobile {
+                padding: 0 4%;
+            }
+            p {
+                padding: 0 5px;
+            }
+            p.temperature {
+                padding: 10px 0;
+                span.tempInd {
+                    font-size: 36px;
+                    font-weight: bold;
+                    padding: 10px;
+                    margin: 20px 5px 20px 0;
+                }
+                &.night {
+                    span.tempInd {
+                        background-color: darken(@accentDarkColor, 15%);
+                        color: @textMainColorLight;
+                    }
+                }
+            }
+            &.details1 {
+                grid-area: details1;
+            }
+            &.details2 {
+                grid-area: details2;
+            }
+            svg.moon-left {
+                margin-left: 10px;
+                
             }
         }
     }
-}
-
-
-div.notloaded {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    background-color: #555555;
-    opacity: 0.9;
-}
-
-.loader {
-    border: 12px solid #f3f3f3; /* Light grey */
-    border-top: 12px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    left: calc(50% - 5px);
-    top: calc(50% - 10px);
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-
-div.loaded {
-    display: none;
-}
-
-div.nextdays {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    // background-color: #eeeeff;
-    div.day {
-        padding: 10px;
+    div.nextdays {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-        font-weight: bold;
-        // transition: 0.3s;
-
-        span.weekday-name {
-            font-size: 20px;
-            margin: 5px;    
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        border-block-start: 1px @textMainColorLight solid;
+        div.day {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            p.weekday-name {
+                font-size: 20px;
+                margin: 5px;    
+            }
+            svg.weekday-icon {
+                width: 5em;
+                height: 5em;
+                color: @textMainColor;
+            }
+            p.weekday-date {
+                font-size: 12px;
+            }
+            p.weekday-temp {
+                margin: 5px;
+                font-size: 18px;
+                padding: 0;
+            }
         }
-        svg.weekday-icon {
-            width: 5em;
-            height: 5em;
-            color: @textMainColor;
-        }
-        span.weekday-date {
-            font-size: 12px;
-        }
-        span.weekday-temp {
-            margin: 5px;
-            font-size: 18px;
-        }
-
-        // &:hover {
-        //     background-color: #eeeeee;
-        // }
-    }
+    }    
 }

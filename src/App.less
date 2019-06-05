@@ -8,12 +8,20 @@
 @backgroundColor: #E1E1E1;
 @textMainColor: #262626;
 @textMainColorLight: #FAFAFA;
-@accentDarkColor: #3F51B5;
+@accentDarkColor: #303F9F;
 @accentLightColor: #3F51B5;
 @accentGray: rgba(136,136,136,0.73);
 
+
+@desktop:   ~"only screen and (min-width: 1280px)";
+@tablet:    ~"only screen and (min-width: 600px) and (max-width: 1279px)";
+@mobile:    ~"only screen and (max-width: 599px)";
+
+
 * {
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .boxShadow(@ho) {
@@ -27,8 +35,7 @@ div.card {
     .boxShadow(2px 2px 5px 0px @accentGray);
     margin: 10px;
     background-color: @textMainColorLight;
-    padding: 10px;
-    position: relative;
+    // padding: 10px;
 }
 
 

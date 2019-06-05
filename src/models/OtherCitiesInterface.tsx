@@ -1,5 +1,5 @@
 
-export default interface OtherCitiesInterface {
+export interface OtherCitiesInterface {
     onCityChange: (city: number) => void;
 }
 

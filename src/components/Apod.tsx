@@ -2,6 +2,7 @@ import React from 'react';
 import {APOD} from '../models/WeatherData';
 import './Apod.css';
 
+// LIVE STREAM! https://www.ustream.tv/embed/17074538?v=3&wmode=direct&autoplay=true
 
 export default class Apod extends React.Component<APOD, {}> {
 
@@ -29,7 +30,6 @@ export default class Apod extends React.Component<APOD, {}> {
                     </div>
                 </div>
             </div>
-
         </div>
     }
 

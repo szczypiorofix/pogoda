@@ -1,7 +1,6 @@
 import React from 'react';
 import './Othercities.css';
-import OtherCitiesInterface from '../models/OtherCitiesInterface';
-
+import { OtherCitiesInterface } from '../models';
 
 
 
@@ -20,11 +19,11 @@ export default class OtherCities extends React.Component<OtherCitiesInterface,{}
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(1)}>
                         <span>&#9656;</span>
-                        <button>Kraków</button>
+                        <button>Gdańsk</button>
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(2)}>
                         <span>&#9656;</span>
-                        <button>Gdańsk</button>
+                        <button>Szczecin</button>
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(3)}>
                         <span>&#9656;</span>
@@ -36,19 +35,19 @@ export default class OtherCities extends React.Component<OtherCitiesInterface,{}
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(5)}>
                         <span>&#9656;</span>
-                        <button>Szczecin</button>
+                        <button>Kraków</button>
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(6)}>
                         <span>&#9656;</span>
-                        <button>Lublin</button>
+                        <button>Rzeszów</button>
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(7)}>
                         <span>&#9656;</span>
-                        <button>Rzeszów</button>
+                        <button>Kielce</button>
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(8)}>
                         <span>&#9656;</span>
-                        <button>Kielce</button>
+                        <button>Lublin</button>
                     </div>
                     <div className="othercitiesBlock" onClick={() => onCityChange(9)}>
                         <span>&#9656;</span>

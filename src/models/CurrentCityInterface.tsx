@@ -1,7 +1,7 @@
-import {City} from './WeatherData';
+import { City } from './WeatherData';
 
-
-export default interface CurrentCityInterface {
+export interface CurrentCityInterface {
     city:City;
-    dateAndTime:string;
+    date:string;
+    time:string;
 }
