@@ -7,6 +7,7 @@ div.card.citypanel {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     color: @textMainColorLight;
     z-index: 0;
     div.bg-div {
@@ -18,6 +19,15 @@ div.card.citypanel {
         bottom: 0;
         z-index: -1;
         background-color: @accentDarkColor;
+    }
+    div.airly {
+        padding: 0 10px;
+        p span {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 3px;
+            font-weight: 700;
+        }
     }
     div.current-city {        
         display: grid;
@@ -93,8 +103,11 @@ div.card.citypanel {
                 }
                 &.night {
                     span.tempInd {
-                        background-color: darken(@accentDarkColor, 15%);
+                        background-color: darken(@accentDarkColor, 20%);
                         color: @textMainColorLight;
+                        opacity: 0.8;
+                        border: none;
+                        border-radius: 2px;
                     }
                 }
             }

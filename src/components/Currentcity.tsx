@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import 'moment/locale/pl';
 import Skycons from 'react-skycons';
 import './Currentcity.css';
-import { WeatherDetails, CurrentCityInterface} from '../models';
+import { WeatherDailyDetails, CurrentCityInterface} from '../models';
 
 
 
@@ -32,12 +32,12 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
       return Math.round(n * 3.6);
     }
 
-    nextDayElement(city:WeatherDetails, id:number) {
+    nextDayElement(city:WeatherDailyDetails, id:number) {
       const calendarStrings = {
         lastDay : '[wczoraj]',
         sameDay : '[dzisiaj]',
         nextDay : '[jutro]',
-        lastWeek : '[last]',
+        lastWeek : 'dddd',
         nextWeek : 'dddd',
         sameElse : 'dddd'
       };
@@ -54,7 +54,7 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
         </div>
     }
 
-    precipitationType(type:WeatherDetails) {
+    precipitationType(type:WeatherDailyDetails) {
         let t:string;
         switch (type.precipType) {
           case 'rain':
@@ -70,8 +70,36 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
                 t='brak'
                 break;
         }
-        if (type.precipProbability > 0) return t+" "+(Math.round(type.precipProbability * 100))+"%";
+        if (type.precipProbability > 0) return t + " " + (Math.round(type.precipProbability * 100)) + "%";
         return t;
+    }
+
+    airConditionLevel(a:string) {
+      let r:string = "";
+      switch(a) {
+        case "EXTREME":
+          r = "EKSTREMALNY";
+          break;
+        case "VERY_HIGH":
+          r = "BARDZO WYSOKI";
+          break;
+        case "HIGH":
+          r = "WYSOKI";
+          break;
+        case "MEDIUM":
+          r = "ŚREDNI"
+          break;
+        case "LOW":
+          r = "DOBRY";
+          break;
+        case "VERY_LOW":
+          r = "BARDZO DOBRY";
+          break;
+        default:
+          r = "DUNNO";
+          break;
+      }
+      return r;
     }
 
     render():JSX.Element {
@@ -81,20 +109,20 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
 
       let city = this.props.city;
       
-      console.log(city ? city.airly : "");
+      // console.log(city ? city.currently : "");
       let currentAirColor:string = city ? city.airly.current.indexes[0].color : "";
       return (
         
         <div className="card citypanel">
           <div className="bg-div"></div>
-          <div className="">
-            <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor }}>DOBRY</span></p>
+          <div className="airly">
+            <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor }}>{ this.airConditionLevel(city ? city.airly.current.indexes[0].level : "") }</span></p>
             <p>PM1 {city ? city.airly.current.values[0].value : ""},
-            PM25 {city ? city.airly.current.values[1].value : ""}, 
-            PM10 {city ? city.airly.current.values[2].value : ""}</p>
-            <p>Jakość powietrza: {city ? city.airly.current.indexes[0].description : ""} </p>
-            <p>Rada: {city ? city.airly.current.indexes[0].advice : ""}</p>
-            <p>Ostatnia aktualizacja: { this.props.date }, { this.props.time }</p>
+                PM25 {city ? city.airly.current.values[1].value : ""}, 
+                PM10 {city ? city.airly.current.values[2].value : ""}</p>
+            <p>Jakość powietrza: <span>{city ? city.airly.current.indexes[0].description : ""}</span> </p>
+            <p>Rada: <span>{city ? city.airly.current.indexes[0].advice : ""}</span></p>
+            <p>Ostatnia aktualizacja: { this.props.time }, { this.props.date }</p>
         </div>
           <div className="current-city">
             <div className="city-info">
@@ -106,7 +134,10 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
             <h3 className="summary">{ city ? city.daily.data[this.state.day].summary : "" }</h3>
             
             <div className="city-weather details1">
-              <p className="temperature day"><span className="tempInd">{ city ? Math.round(city.daily.data[this.state.day].temperatureHigh) : "" }&#8451; </span><span>odczuwalna { city ? Math.round(city.daily.data[this.state.day].apparentTemperatureHigh) : "" }&#8451;</span></p>
+              <p className="temperature day"><span className="tempInd">
+                { city ? Math.round(city.currently.temperature) : "" }&#8451; </span>
+                <span>odczuwalna { city ? Math.round(city.daily.data[this.state.day].apparentTemperatureHigh) : "" }&#8451;</span>
+              </p>
               <p className="temperature night"><span className="tempInd">{ city ? Math.round(city.daily.data[this.state.day].temperatureLow) : "" }&#8451;</span><span> odczuwalna { city ? Math.round(city.daily.data[this.state.day].apparentTemperatureLow) : "" }&#8451;</span></p>
               <p>Świt <Moment locale="pl" unix format="LT">{city ? city.daily.data[this.state.day].sunriseTime : ""}</Moment></p>
               <p>Zmierzch <Moment locale="pl" unix format="LT">{city ? city.daily.data[this.state.day].sunsetTime : ""}</Moment></p>
@@ -122,7 +153,6 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
               <p>Zachmurzenie: { city ? Math.round(city.daily.data[this.state.day].cloudCover * 100) : "" }%</p>
               <p>Prawdopodobieństwo opadów: {city ? this.precipitationType(city.daily.data[this.state.day]) : "brak"}</p>
             </div>
-            
             
           </div>
 

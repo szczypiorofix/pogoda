@@ -45,8 +45,8 @@ $locations = [
     ],
     [
         'name' => "Rzeszów",
-        'latitude' => 50.034,
-        'longitude' => 21.994
+        'latitude' => 50.0321,
+        'longitude' => 22.0662
     ],
     [
         'name' => "Kielce",
@@ -78,7 +78,10 @@ $locations = [
 // DarkSky & Airly
 
 foreach($locations as $location => $name) {
+
     // DarkSky
+
+    // Daily weather
     $args = $name['latitude'].','.$name['longitude'];
     
     $c = curl_init();
@@ -91,9 +94,21 @@ foreach($locations as $location => $name) {
     $data = curl_exec($c);
     echo curl_error($c);
     curl_close($c);
-
     $dataFromAPI = json_decode($data);
     $dataFromAPI->name = $name['name'];
+
+    // Current weather
+    $c = curl_init();
+    curl_setopt($c, CURLOPT_HEADER, 0);
+    curl_setopt($c, CURLOPT_VERBOSE, 0);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_ENCODING, "gzip");
+    curl_setopt($c, CURLOPT_URL, 'https://api.darksky.net/forecast/'.WEATHER_API_KEY.'/'.$args.'?lang=pl&exclude=hourly,daily,minutely,flags,alerts&units=si');
+    curl_setopt($c, CURLOPT_HTTPGET, 1);
+    $data = curl_exec($c);
+    echo curl_error($c);
+    curl_close($c);
+    $dataFromAPI->currently = json_decode($data)->currently;
 
     // Airly
     $coordinates = 'lat='.$name['latitude'].'&lng='.$name['longitude'];
