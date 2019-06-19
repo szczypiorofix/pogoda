@@ -68,7 +68,7 @@ export interface WeatherDaily {
     data: WeatherDailyDetails[];
 }
 
-interface AirlyCurrentIndexes {
+export interface AirlyCurrentIndexes {
     name: string;
     value: number;
     level: string;
@@ -77,12 +77,12 @@ interface AirlyCurrentIndexes {
     color:string;
 }
 
-interface AirlyCurrentValues {
+export interface AirlyCurrentValues {
     name: string;
     value: number;
 }
 
-interface AirlyCurrent {
+export interface AirlyCurrent {
     indexes: AirlyCurrentIndexes[];
     values: AirlyCurrentValues[];
 }

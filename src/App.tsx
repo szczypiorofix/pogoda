@@ -1,11 +1,11 @@
 import React from 'react';
+
 import './App.css';
 
 import Mainheader   from './components/Mainheader';
 import OtherCities  from './components/OtherCities';
 import CurrentCity  from './components/CurrentCity';
 import Apod         from './components/Apod';
-
 import {City, CommonData} from './models';
 
 
@@ -53,26 +53,40 @@ export default class App extends React.Component<{}, CommonData> {
   }
 
   render():JSX.Element {
-    return (
-      <div className="App">
-          <Mainheader />
-          <OtherCities onCityChange={this.onCityChange} />
-          <CurrentCity
-            date        = { this.state.date }
-            time        = { this.state.time }
-            city        = { this.state.weatherData[this.state.currentCity] }
-          />
-          <Apod
-            copyright = {this.state.apod.copyright}
-            url = {this.state.apod.url}
-            title = {this.state.apod.title}
-            explanation = {this.state.apod.explanation}
-            date = {this.state.apod.date}
-            hdurl = {this.state.apod.hdurl}
-            media_type = {this.state.apod.media_type}
-          />
-      </div>
-    );
+
+    if (this.state && this.state.weatherData) {
+      return (
+        <div className="App">
+            <Mainheader />
+            {
+              this.state && this.state.weatherData && this.state.apod && (
+                <React.Fragment>
+                  <OtherCities onCityChange={this.onCityChange} />
+                  <CurrentCity
+                    date        = { this.state.date }
+                    time        = { this.state.time }
+                    city        = { this.state.weatherData[this.state.currentCity] }
+                  />
+                  <Apod
+                    copyright = {this.state.apod.copyright}
+                    url = {this.state.apod.url}
+                    title = {this.state.apod.title}
+                    explanation = {this.state.apod.explanation}
+                    date = {this.state.apod.date}
+                    hdurl = {this.state.apod.hdurl}
+                    media_type = {this.state.apod.media_type}
+                  />
+                </React.Fragment>
+              )
+            }
+            
+            
+        </div>
+      ); 
+    } else {
+      return ( <h1 style={{color:"black"}} >Something went wrong, mister...</h1> );
+    }
+
   }
 
 }
