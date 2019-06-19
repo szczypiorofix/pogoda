@@ -16,6 +16,7 @@ export default class Apod extends React.Component<APOD, {}> {
 
     render():JSX.Element {
         
+        if (this.props.title)
         return <div className="card">
             <div className="apod-div">
                 <h1>Astronomy Picture of the Day !</h1>
@@ -26,11 +27,16 @@ export default class Apod extends React.Component<APOD, {}> {
                     <div className="description-div">
                         <h3>{this.props.title}</h3>
                         <p>{this.props.explanation}</p>
-                        <p className="copyright">Copyright by {this.props.copyright}, {this.props.date}</p>
+                        {
+                            this.props.copyright && this.props.copyright.length > 0
+                            ? <p className="copyright">Copyright by {this.props.copyright}, {this.props.date}</p>
+                            : <p className="copyright">{this.props.date}</p>
+                        }
                     </div>
                 </div>
             </div>
         </div>
+        return <div></div>
     }
 
 }

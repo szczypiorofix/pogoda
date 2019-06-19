@@ -162,34 +162,34 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
             </div>
   
             <div className="nextDaysWeather">
-            <h3 className="summary">{city.daily.data[this.state.day].summary}</h3>
+              <h3 className="summary">{city.daily.data[this.state.day].summary}</h3>
+              
+              <div className="city-weather details1">
+                <p className="temperature day"><span className="tempInd">
+                  {Math.round(city.currently.temperature) }&#8451; </span>
+                  <span>odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureHigh)}&#8451;</span>
+                </p>
+                <p className="temperature night"><span className="tempInd">{Math.round(city.daily.data[this.state.day].temperatureLow)}&#8451;</span><span> odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureLow)}&#8451;</span></p>
+                <p>Świt <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunriseTime}</Moment></p>
+                <p>Zmierzch <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunsetTime}</Moment></p>
+              </div>
             
-            <div className="city-weather details1">
-              <p className="temperature day"><span className="tempInd">
-                {Math.round(city.currently.temperature) }&#8451; </span>
-                <span>odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureHigh)}&#8451;</span>
-              </p>
-              <p className="temperature night"><span className="tempInd">{Math.round(city.daily.data[this.state.day].temperatureLow)}&#8451;</span><span> odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureLow)}&#8451;</span></p>
-              <p>Świt <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunriseTime}</Moment></p>
-              <p>Zmierzch <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunsetTime}</Moment></p>
-            </div>
-          
-            <div className="city-weather details2">
-              <p>Wilgotność: {Math.round(city.daily.data[this.state.day].humidity * 100)} %</p>
-              <p>Ciśnienie atmosferyczne: {Math.round(city.daily.data[this.state.day].pressure)} hPa</p>
-              <p>
-                Wiatr: {this.msToKmh(city.daily.data[this.state.day].windSpeed)} km/h,
-                w porywach {this.msToKmh(city.daily.data[this.state.day].windGust)} km/h
-              </p>
-              <p>Zachmurzenie: {Math.round(city.daily.data[this.state.day].cloudCover * 100)}%</p>
-              <p>Prawdopodobieństwo opadów: {this.precipitationType(city.daily.data[this.state.day])}</p>
-            </div>
+              <div className="city-weather details2">
+                <p>Wilgotność: {Math.round(city.daily.data[this.state.day].humidity * 100)} %</p>
+                <p>Ciśnienie atmosferyczne: {Math.round(city.daily.data[this.state.day].pressure)} hPa</p>
+                <p>
+                  Wiatr: {this.msToKmh(city.daily.data[this.state.day].windSpeed)} km/h,
+                  w porywach {this.msToKmh(city.daily.data[this.state.day].windGust)} km/h
+                </p>
+                <p>Zachmurzenie: {Math.round(city.daily.data[this.state.day].cloudCover * 100)}%</p>
+                <p>Prawdopodobieństwo opadów: {this.precipitationType(city.daily.data[this.state.day])}</p>
+              </div>
             </div>
   
           </div>
         )
       }
-      return <h1>Loading...</h1>
+      return <div></div>
 
     }
   }
