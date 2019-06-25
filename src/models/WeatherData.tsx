@@ -119,4 +119,9 @@ export interface CommonData {
     apod: APOD;
     date:string;
     time:string;
+    refresh:boolean;
+}
+
+export interface RefreshData {
+    onRefresh: () => void;
 }

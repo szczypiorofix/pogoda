@@ -1,12 +1,10 @@
 
 import React from 'react';
 import Moment from 'react-moment';
-// import 'moment-timezone';
 import 'moment/locale/pl';
 import Skycons from 'react-skycons';
 import './Currentcity.css';
-import { WeatherDailyDetails, CurrentCityInterface, City} from '../models';
-
+import { WeatherDailyDetails, CurrentCityInterface, City, WeatherCurrentlyDetails} from '../models';
 
 
 interface CurrentDay {
@@ -54,7 +52,7 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
         </div>
     }
 
-    precipitationType(type:WeatherDailyDetails) {
+    precipitationType(type:WeatherCurrentlyDetails) {
         let t:string;
         switch (type.precipType) {
           case 'rain':
@@ -110,13 +108,14 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
       let city:City = this.props.city;
 
       if (city) {
+
         let currentAirColor:string = city.airly.current.indexes[0].color;
         
         return (
           <div className="card citypanel">
             <div className="bg-div"></div>
             <div className="airly">
-              <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor }}>{ this.airConditionLevel(city.airly.current.indexes[0].level)}</span></p>
+              <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor}}>{ this.airConditionLevel(city.airly.current.indexes[0].level)}</span></p>
               <p>PM1 {city.airly.current.values[0].value},
                   PM25 {city.airly.current.values[1].value}, 
                   PM10 {city.airly.current.values[2].value}</p>
@@ -128,64 +127,43 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
             <div className="current-city">
               <div className="city-info">
                 <p className="city-name" id="currentCityName">{city.name}</p>
-                <p className="current-date"><Moment locale="pl" unix format="DD.MM.YYYY">{city.daily.data[this.state.day].time}</Moment></p>
-                { this.skyconIcon(city.daily.data[this.state.day].icon, 200, "#eeeeee", true) }
+                <p className="current-date"><Moment locale="pl" unix format="DD.MM.YYYY">{city.currently.time}</Moment></p>
+                { this.skyconIcon(city.currently.icon, 200, "#eeeeee", true)}
               </div>
             
-              <h3 className="summary">{city.daily.data[this.state.day].summary}</h3>
+              <h3 className="summary">{city.currently.summary}</h3>
             
               <div className="city-weather details1">
-                <p className="temperature day"><span className="tempInd">
-                  {Math.round(city.currently.temperature)}&#8451; </span>
-                  <span>odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureHigh)}&#8451;</span>
+                <p className="temperature day">
+                  <span className="tempInd">{Math.round(city.currently.temperature)}&#8451; </span>
+                  {
+                    Math.round(city.currently.temperature) !== Math.round(city.currently.apparentTemperature) ? <span>odczuwalna {Math.round(city.currently.apparentTemperature)}&#8451;</span> : ""
+                  }
                 </p>
-                <p className="temperature night"><span className="tempInd">{Math.round(city.daily.data[this.state.day].temperatureLow)}&#8451;</span><span> odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureLow)}&#8451;</span></p>
-                <p>Świt <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunriseTime}</Moment></p>
-                <p>Zmierzch <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunsetTime }</Moment></p>
+                <p className="temperature night">
+                  <span className="tempInd">{Math.round(city.daily.data[0].temperatureLow)}&#8451;</span>
+                  {
+                    Math.round(city.daily.data[0].temperatureLow) !== Math.round(city.daily.data[0].apparentTemperatureLow) ? <span> odczuwalna {Math.round(city.daily.data[0].apparentTemperatureLow)}&#8451;</span> : ""
+                  }
+                </p>
+                <p>Świt <Moment locale="pl" unix format="LT">{city.daily.data[0].sunriseTime}</Moment></p>
+                <p>Zmierzch <Moment locale="pl" unix format="LT">{city.daily.data[0].sunsetTime }</Moment></p>
               </div>
             
               <div className="city-weather details2">
-                <p>Wilgotność: { Math.round(city.daily.data[this.state.day].humidity * 100)} %</p>
-                <p>Ciśnienie atmosferyczne: { Math.round(city.daily.data[this.state.day].pressure)} hPa</p>
-                <p>
-                  Wiatr: { this.msToKmh(city.daily.data[this.state.day].windSpeed)} km/h,
-                  w porywach { this.msToKmh(city.daily.data[this.state.day].windGust)} km/h
-                </p>
-                <p>Zachmurzenie: {Math.round(city.daily.data[this.state.day].cloudCover * 100)}%</p>
-                <p>Prawdopodobieństwo opadów: {this.precipitationType(city.daily.data[this.state.day])}</p>
+                <p>Wilgotność: { Math.round(city.currently.humidity * 100)} %</p>
+                <p>Ciśnienie atmosferyczne: { Math.round(city.currently.pressure)} hPa</p>
+                <p>Wiatr: { this.msToKmh(city.currently.windSpeed)} km/h, w porywach { this.msToKmh(city.currently.windGust)} km/h</p>
+                <p>Widoczność: {Math.round(city.currently.visibility)} km</p>
+                <p>Zachmurzenie: {Math.round(city.currently.cloudCover * 100)}%</p>
+                <p>Prawdopodobieństwo opadów: {this.precipitationType(city.currently)}</p>
               </div>
-            
+
             </div>
   
             <div className="nextDays">
               {city.daily.data.map( (item, index) => this.nextDayElement(item, index))}
             </div>
-  
-            <div className="nextDaysWeather">
-              <h3 className="summary">{city.daily.data[this.state.day].summary}</h3>
-              
-              <div className="city-weather details1">
-                <p className="temperature day"><span className="tempInd">
-                  {Math.round(city.currently.temperature) }&#8451; </span>
-                  <span>odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureHigh)}&#8451;</span>
-                </p>
-                <p className="temperature night"><span className="tempInd">{Math.round(city.daily.data[this.state.day].temperatureLow)}&#8451;</span><span> odczuwalna {Math.round(city.daily.data[this.state.day].apparentTemperatureLow)}&#8451;</span></p>
-                <p>Świt <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunriseTime}</Moment></p>
-                <p>Zmierzch <Moment locale="pl" unix format="LT">{city.daily.data[this.state.day].sunsetTime}</Moment></p>
-              </div>
-            
-              <div className="city-weather details2">
-                <p>Wilgotność: {Math.round(city.daily.data[this.state.day].humidity * 100)} %</p>
-                <p>Ciśnienie atmosferyczne: {Math.round(city.daily.data[this.state.day].pressure)} hPa</p>
-                <p>
-                  Wiatr: {this.msToKmh(city.daily.data[this.state.day].windSpeed)} km/h,
-                  w porywach {this.msToKmh(city.daily.data[this.state.day].windGust)} km/h
-                </p>
-                <p>Zachmurzenie: {Math.round(city.daily.data[this.state.day].cloudCover * 100)}%</p>
-                <p>Prawdopodobieństwo opadów: {this.precipitationType(city.daily.data[this.state.day])}</p>
-              </div>
-            </div>
-  
           </div>
         )
       }

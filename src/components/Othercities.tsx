@@ -3,7 +3,6 @@ import './Othercities.css';
 import { OtherCitiesInterface } from '../models';
 
 
-
 export default class OtherCities extends React.Component<OtherCitiesInterface,{}> {
     
 

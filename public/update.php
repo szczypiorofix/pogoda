@@ -89,26 +89,13 @@ foreach($locations as $location => $name) {
     curl_setopt($c, CURLOPT_VERBOSE, 0);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($c, CURLOPT_ENCODING, "gzip");
-    curl_setopt($c, CURLOPT_URL, 'https://api.darksky.net/forecast/'.WEATHER_API_KEY.'/'.$args.'?lang=pl&exclude=hourly,currently,minutely,flags,alerts&units=si');
+    curl_setopt($c, CURLOPT_URL, 'https://api.darksky.net/forecast/'.WEATHER_API_KEY.'/'.$args.'?lang=pl&exclude=hourly,minutely,flags&units=si');
     curl_setopt($c, CURLOPT_HTTPGET, 1);
     $data = curl_exec($c);
     echo curl_error($c);
     curl_close($c);
     $dataFromAPI = json_decode($data);
     $dataFromAPI->name = $name['name'];
-
-    // Current weather
-    $c = curl_init();
-    curl_setopt($c, CURLOPT_HEADER, 0);
-    curl_setopt($c, CURLOPT_VERBOSE, 0);
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($c, CURLOPT_ENCODING, "gzip");
-    curl_setopt($c, CURLOPT_URL, 'https://api.darksky.net/forecast/'.WEATHER_API_KEY.'/'.$args.'?lang=pl&exclude=hourly,daily,minutely,flags,alerts&units=si');
-    curl_setopt($c, CURLOPT_HTTPGET, 1);
-    $data = curl_exec($c);
-    echo curl_error($c);
-    curl_close($c);
-    $dataFromAPI->currently = json_decode($data)->currently;
 
     // Airly
     $coordinates = 'lat='.$name['latitude'].'&lng='.$name['longitude'];
@@ -154,36 +141,13 @@ $results['apod'] = json_decode($data);
 
 
 
-
 // CURRENT DATE & TIME
 $results['date'] = date("d.m.Y");
 $results['time'] = date("H:i:s");
 
 
 
-
-
-// AIRLY
-// $c = curl_init();
-// curl_setopt($c, CURLOPT_HEADER, 0);
-// curl_setopt($c, CURLOPT_VERBOSE, 0);
-// curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-// curl_setopt($c, CURLOPT_ENCODING, "gzip");
-// curl_setopt($c, CURLOPT_HTTPHEADER, array(
-//     'Accept: application/json',
-//     'apikey: ru4nT0UBfsSQurIUGKi3ipNcIkRqe7FI',
-//     'Accept-Language: pl'
-// ));
-// curl_setopt($c, CURLOPT_URL, 'https://airapi.airly.eu/v2/measurements/point?lat=52.23&lng=21.00');
-// curl_setopt($c, CURLOPT_HTTPGET, 1);
-// $data = curl_exec($c);
-// echo curl_error($c);
-// curl_close($c);
-
-// $results['airly'] = json_decode($data);
-
-
-
+// Write data to json file
 $fp = fopen('weather.json', 'w');
 fwrite($fp, json_encode($results));
 fclose($fp);
