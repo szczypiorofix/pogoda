@@ -7,6 +7,7 @@ import './Currentcity.css';
 import { WeatherDailyDetails, CurrentCityInterface, City, WeatherCurrentlyDetails} from '../models';
 
 
+
 interface CurrentDay {
   day:number;
 }
@@ -111,8 +112,12 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
 
         let currentAirColor:string = city.airly.current.indexes[0].color;
         
+        var bgImage = {
+          backgroundImage: "url(/images/" + city.currently.icon + ".jpg)"
+        };
+
         return (
-          <div className="card citypanel">
+          <div className="card citypanel" style={ bgImage }>
             <div className="bg-div"></div>
             <div className="airly">
               <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor}}>{ this.airConditionLevel(city.airly.current.indexes[0].level)}</span></p>

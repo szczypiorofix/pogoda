@@ -9,6 +9,7 @@ import Apod         from './components/Apod';
 import {City, CommonData} from './models';
 import Speech from 'speak-tts';
 
+
 const speech = new Speech() // will throw an exception if not browser supported
 if(speech.hasBrowserSupport()) { // returns a boolean
     console.log("speech synthesis supported")
@@ -36,6 +37,7 @@ export default class App extends React.Component<{}, CommonData> {
   };
 
   onCityChange = (city:number) => {
+    speech.cancel();
     let r:string = "";
       switch(this.state.weatherData[city].airly.current.indexes[0].level) {
         case "EXTREME":
@@ -98,6 +100,7 @@ export default class App extends React.Component<{}, CommonData> {
   }
 
   onRefresh = () => {
+    speech.cancel();
     console.log("Refresh!");
     speech.speak({
       text: "Odświeżam dane, proszę czekać."
