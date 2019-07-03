@@ -1,2 +1,2 @@
 declare module 'react-skycons';
-declare module  'speak-tts';
+declare module 'speak-tts';

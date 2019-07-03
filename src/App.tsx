@@ -10,21 +10,11 @@ import {City, CommonData} from './models';
 import Speech from 'speak-tts';
 
 
-const speech = new Speech() // will throw an exception if not browser supported
-if(speech.hasBrowserSupport()) { // returns a boolean
-    console.log("speech synthesis supported")
-}
-speech.init().then(() => {
-  // The "data" object contains the list of available voices and the voice synthesis params
-  console.log("Speech is ready, voices are available")
-}).catch(() => {
-  console.error("An error occured while initializing : ");
-})
-
-
 
 export default class App extends React.Component<{}, CommonData> {
   
+  speech:any;
+
   state: Readonly<CommonData> = {
     weatherData: [],
     currentCity: 0,
@@ -36,8 +26,23 @@ export default class App extends React.Component<{}, CommonData> {
     refresh: false
   };
 
+
+
+  constructor(props:any) {
+    super(props);
+    this.speech = new Speech();
+    if (this.speech.hasBrowserSupport()) {
+      console.log("speech synthesis supported")
+    }
+    this.speech.init().then(() => {
+      console.log("Speech is ready, voices are available")
+    }).catch(() => {
+      console.error("An error occured while initializing : ");
+    });
+  }
+
   onCityChange = (city:number) => {
-    speech.cancel();
+    this.speech.cancel();
     let r:string = "";
       switch(this.state.weatherData[city].airly.current.indexes[0].level) {
         case "EXTREME":
@@ -62,13 +67,13 @@ export default class App extends React.Component<{}, CommonData> {
           r = "DUNNO";
           break;
       }
-    let stopni:string =  Math.round(this.state.weatherData[city].currently.temperature)+"";
+    let stopni:string = Math.round(this.state.weatherData[city].currently.temperature)+"";
     if (stopni.endsWith('1')) stopni = "stopień";
     else if (stopni.endsWith('2') || stopni.endsWith('3') || stopni.endsWith('4')) stopni = "stopnie";
     else stopni = "stopni";
 
 
-    speech.speak({
+    this.speech.speak({
       text: this.state.weatherData[city].name+". "+this.state.weatherData[city].currently.summary
       +". Temperatura: "+Math.round(this.state.weatherData[city].currently.temperature)
       +" "+stopni+" Celsjusza. Stan czystości powietrza: "+r
@@ -78,36 +83,36 @@ export default class App extends React.Component<{}, CommonData> {
     });
   }
 
-  getData() {
-    fetch("weather.json")
-    .then(resp => {
-        if (resp.ok) {
-            return resp.json();
-        } else {
-            throw new Error("Fetch error!!!");
-        }
-    }).then(resp => {
-      var cities:City[] = resp.cities;
-      // console.log(resp);
-      this.setState({
+  async getData() {
+    try {
+      const response = await fetch("weather.json");
+      if (response.ok) {
+        let resp:any = await response.json();
+        var cities:City[] = resp.cities;
+        this.setState({
           weatherData: cities,
           apod: resp.apod,
           time: resp.time,
           date: resp.date,
           refresh: false
-      });
-    });
+        });
+      }
+      else
+        throw new Error("Fetch error!!!");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   onRefresh = () => {
-    speech.cancel();
-    console.log("Refresh!");
-    speech.speak({
+    this.speech.cancel();
+    // console.log("Refresh!");
+    this.speech.speak({
       text: "Odświeżam dane, proszę czekać."
     });
     this.getData();
   }
-  
+
   componentDidMount() {
     this.getData();
   }
