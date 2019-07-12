@@ -85,7 +85,7 @@ export default class App extends React.Component<{}, CommonData> {
 
   async getData() {
     try {
-      const response = await fetch("weather.json");
+      const response = await fetch("https://pogoda.wroblewskipiotr.pl/weather.json");
       if (response.ok) {
         let resp:any = await response.json();
         var cities:City[] = resp.cities;
@@ -97,8 +97,9 @@ export default class App extends React.Component<{}, CommonData> {
           refresh: false
         });
       }
-      else
+      else {
         throw new Error("Fetch error!!!");
+      }
     } catch (err) {
       console.error(err);
     }
