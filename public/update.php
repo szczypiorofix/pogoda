@@ -35,8 +35,8 @@ $locations = [
     ],
     [
         'name' => "Wrocław",
-        'latitude' => 51.111,
-        'longitude' => 17.029
+        'latitude' => 51.08613,
+        'longitude' => 17.05629
     ],
     [
         'name' => "Kraków",

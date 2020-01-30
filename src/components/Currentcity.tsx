@@ -120,12 +120,12 @@ export default class Currentcity extends React.Component<CurrentCityInterface, C
           <div className="card citypanel" style={ bgImage }>
             <div className="bg-div"></div>
             <div className="airly">
-              <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor}}>{ this.airConditionLevel(city.airly.current.indexes[0].level)}</span></p>
-              <p>PM1 {city.airly.current.values[0].value},
-                  PM25 {city.airly.current.values[1].value}, 
-                  PM10 {city.airly.current.values[2].value}</p>
-              <p>Jakość powietrza: <span>{city.airly.current.indexes[0].description}</span> </p>
-              <p>Rada: <span>{city.airly.current.indexes[0].advice}</span></p>
+              <p>Aktualny stan powietrza: <span style={{backgroundColor:currentAirColor}}>{ this.airConditionLevel(city.airly.current.indexes[0].level) }</span></p>
+              <p>PM1 {city.airly.current.values.length > 0 ? city.airly.current.values[0].value : "brak danych"},
+                  PM25 {city.airly.current.values.length > 0 ? city.airly.current.values[1].value : "brak danych"}, 
+                  PM10 {city.airly.current.values.length > 0 ? city.airly.current.values[2].value : "brak danych"}</p>
+              <p>Jakość powietrza: <span>{city.airly.current.indexes[0].description ? city.airly.current.indexes[0].description : "brak danych"}</span> </p>
+              <p>Rada: <span>{city.airly.current.indexes[0].advice ? city.airly.current.indexes[0].advice : "brak danych"}</span></p>
               <p>Dane dostarczone przez: <a href="https://airly.eu/pl/" target="blank"><img src="https://cdn.airly.eu/assets/LogoBlue.png" alt="Airly logo"></img></a></p>
               <p>Ostatnia aktualizacja: { this.props.time }, { this.props.date }</p>
             </div>
