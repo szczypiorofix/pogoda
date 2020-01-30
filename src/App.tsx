@@ -2,7 +2,7 @@ import React from "react";
 
 import "./App.css";
 
-import Mainheader from "./components/Mainheader";
+import Mainheader from "./components/MainHeader";
 import OtherCities from "./components/OtherCities";
 import CurrentCity from "./components/CurrentCity";
 import Apod from "./components/Apod";
