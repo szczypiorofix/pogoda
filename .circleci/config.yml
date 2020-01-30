@@ -1,0 +1,31 @@
+version: 2
+jobs:
+   build:
+     docker:
+       - image: circleci/node:latest
+     steps:
+       - checkout
+       - add_ssh_keys:
+          fingerprints:
+            - "3d:fc:55:8b:a0:33:ab:93:c7:86:6d:22:6f:07:2d:6e"
+       - run: npm install
+       - run: npm run format
+       - run: npm run lint
+       - run: npm test
+       - run: npm run build
+       - run: git log --oneline --decorate > client/public/changelog.txt
+       - run: cp server/package.json server/build/
+       - run: node deploy_app.js
+       - run: ssh-keyscan -H 's21.mydevil.net' >> ~/.ssh/known_hosts
+       - run: ssh $SSH_USER@$SSH_HOST "cd domains/pogoda.wroblewskipiotr.pl/public_html/ && npm install && devil www restart pogoda.wroblewskipiotr.pl"
+
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+               - master
