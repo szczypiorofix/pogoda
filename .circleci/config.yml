@@ -13,8 +13,8 @@ jobs:
        - run: npm run lint
        - run: npm test
        - run: npm run build
-       - run: git log --oneline --decorate > client/public/changelog.txt
-       - run: cp server/package.json server/build/
+       - run: git log --oneline --decorate > public_html/changelog.txt
+       - run: cp package.json build/
        - run: node deploy_app.js
        - run: ssh-keyscan -H 's21.mydevil.net' >> ~/.ssh/known_hosts
        - run: ssh $SSH_USER@$SSH_HOST "cd domains/pogoda.wroblewskipiotr.pl/public_html/ && npm install && devil www restart pogoda.wroblewskipiotr.pl"
