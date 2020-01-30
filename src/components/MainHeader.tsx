@@ -2,7 +2,7 @@ import React from "react";
 import "./Mainheader.css";
 import { RefreshData } from "../models";
 
-export default class Mainheader extends React.Component<RefreshData, {}> {
+export default class MainHeader extends React.Component<RefreshData, {}> {
   render() {
     return (
       <header>
