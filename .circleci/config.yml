@@ -10,7 +10,6 @@ jobs:
             - "3d:fc:55:8b:a0:33:ab:93:c7:86:6d:22:6f:07:2d:6e"
        - run: npm install
        - run: npm run format
-       - run: npm run lint
        - run: npm test
        - run: npm run build
        - run: git log --oneline --decorate > public_html/changelog.txt
