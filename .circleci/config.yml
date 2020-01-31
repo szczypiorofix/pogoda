@@ -5,13 +5,10 @@ jobs:
        - image: circleci/node:latest
      steps:
        - checkout
-       - add_ssh_keys:
-          fingerprints:
-            - "67:3a:22:2c:f1:74:2c:ae:64:7b:5f:93:69:eb:1e:fb"
        - run: npm install
        - run: npm run format
        - run: npm run build
-       - run: cp package.json build/
+       - run: git log --oneline --decorate > public/changelog.txt
        - run: node deploy_app.js
 
 workflows:

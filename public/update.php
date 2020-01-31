@@ -71,8 +71,6 @@ foreach($locationsJson->locations as $location => $loc) {
 }
 
 
-
-
 // NASA - A Picture Of the Day
 
 $c = curl_init();
@@ -88,11 +86,9 @@ curl_close($c);
 $results['apod'] = json_decode($data);
 
 
-
 // CURRENT DATE & TIME
 $results['date'] = date("d.m.Y");
 $results['time'] = date("H:i:s");
-
 
 
 // Write data to json file
