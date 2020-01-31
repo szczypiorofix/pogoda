@@ -8,62 +8,11 @@ define('WEATHER_API_KEY', Config::get('DARKSKY_API_KEY'));
 define('NASA_API_KEY', Config::get('NASA_API_KEY'));
 define('AIRLY_API_KEY', Config::get('AIRLY_API_KEY'));
 
-
 $args = '';
 $results = [];
 
-$locations = [
-    [
-        'name' => "Warszawa",
-        'latitude' => 52.232,
-        'longitude' => 21.015
-    ],
-    [
-        'name' => "Gdańsk",
-        'latitude' => 54.348,
-        'longitude' => 18.649
-    ],
-    [
-        'name' => "Szczecin",
-        'latitude' => 53.438,
-        'longitude' => 14.551
-    ],
-    [
-        'name' => "Poznań",
-        'latitude' => 52.410,
-        'longitude' => 16.906
-    ],
-    [
-        'name' => "Wrocław",
-        'latitude' => 51.08613,
-        'longitude' => 17.05629
-    ],
-    [
-        'name' => "Kraków",
-        'latitude' => 50.055,
-        'longitude' => 19.947
-    ],
-    [
-        'name' => "Rzeszów",
-        'latitude' => 50.0321,
-        'longitude' => 22.0662
-    ],
-    [
-        'name' => "Kielce",
-        'latitude' => 50.869,
-        'longitude' => 20.635
-    ],
-    [
-        'name' => "Lublin",
-        'latitude' => 51.235,
-        'longitude' => 22.575
-    ],
-    [
-        'name' => "Suwałki",
-        'latitude' => 54.103,
-        'longitude' => 22.922
-    ]
-];
+$locationsString = file_get_contents("locations.json");
+$locationsJson = json_decode($locationsString);
 
 
 // Examples:
@@ -77,12 +26,11 @@ $locations = [
 
 // DarkSky & Airly
 
-foreach($locations as $location => $name) {
+foreach($locationsJson->locations as $location => $loc) {
 
-    // DarkSky
-
-    // Daily weather
-    $args = $name['latitude'].','.$name['longitude'];
+    // DarkSky daily weather
+    
+    $args = $loc->latitude.','.$loc->longitude;
     
     $c = curl_init();
     curl_setopt($c, CURLOPT_HEADER, 0);
@@ -95,10 +43,10 @@ foreach($locations as $location => $name) {
     echo curl_error($c);
     curl_close($c);
     $dataFromAPI = json_decode($data);
-    $dataFromAPI->name = $name['name'];
+    $dataFromAPI->name = $loc->name;
 
     // Airly
-    $coordinates = 'lat='.$name['latitude'].'&lng='.$name['longitude'];
+    $coordinates = 'lat='.$loc->latitude.'&lng='.$loc->longitude;
 
     $c = curl_init();
     curl_setopt($c, CURLOPT_HEADER, 0);
