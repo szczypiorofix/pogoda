@@ -13,9 +13,6 @@ jobs:
        - run: npm run build
        - run: cp package.json build/
        - run: node deploy_app.js
-       - run: ssh-keyscan -H 's21.mydevil.net' >> ~/.ssh/known_hosts
-       - run: ssh $SSH_USER@$SSH_HOST "cd domains/pogoda.wroblewskipiotr.pl/public_html/ && devil www restart pogoda.wroblewskipiotr.pl"
-
 
 workflows:
   version: 2
