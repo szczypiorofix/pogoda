@@ -14,9 +14,9 @@ var reactAppConfig = {
 }
 
 
-ftpDeploy.on('uploaded', function(data) {
-    console.log(data);
-});
+// ftpDeploy.on('uploaded', function(data) {
+//     console.log(data);
+// });
 
 
 ftpDeploy.deploy(reactAppConfig, function(err, res) {
