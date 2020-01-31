@@ -1,32 +1,33 @@
+// tslint:disable-next-line: no-submodule-imports
+import "moment/locale/pl";
 import React from "react";
 import Moment from "react-moment";
-import "moment/locale/pl";
 import Skycons from "react-skycons";
-import "./Currentcity.css";
 import {
-  WeatherDailyDetails,
-  CurrentCityInterface,
-  City,
-  WeatherCurrentlyDetails
+  ICity,
+  ICurrentCityInterface,
+  IWeatherCurrentlyDetails,
+  IWeatherDailyDetails
 } from "../models";
+import "./Currentcity.css";
 
-interface CurrentDay {
+interface ICurrentDay {
   day: number;
 }
 
 // Dzień tygodnia: <span className="weekday-name"><Moment locale="pl" unix format="dddd">{city.time}</Moment></span>
 
 export default class Currentcity extends React.Component<
-  CurrentCityInterface,
-  CurrentDay
+  ICurrentCityInterface,
+  ICurrentDay
 > {
-  componentDidMount() {
+  public componentDidMount() {
     this.setState({
       day: 0
     });
   }
 
-  skyconIcon(icon: string, w: number, c: string, p: boolean) {
+  public skyconIcon(icon: string, w: number, c: string, p: boolean) {
     return (
       <Skycons
         style={{ width: w + "px", height: w / 2 + "px" }}
@@ -37,11 +38,11 @@ export default class Currentcity extends React.Component<
     );
   }
 
-  msToKmh(n: number) {
+  public msToKmh(n: number) {
     return Math.round(n * 3.6);
   }
 
-  nextDayElement(city: WeatherDailyDetails, id: number) {
+  public nextDayElement(city: IWeatherDailyDetails, id: number) {
     const calendarStrings = {
       lastDay: "[wczoraj]",
       sameDay: "[dzisiaj]",
@@ -72,7 +73,7 @@ export default class Currentcity extends React.Component<
     );
   }
 
-  precipitationType(type: WeatherCurrentlyDetails) {
+  public precipitationType(type: IWeatherCurrentlyDetails) {
     let t: string;
     switch (type.precipType) {
       case "rain":
@@ -88,12 +89,13 @@ export default class Currentcity extends React.Component<
         t = "brak";
         break;
     }
-    if (type.precipProbability > 0)
+    if (type.precipProbability > 0) {
       return t + " " + Math.round(type.precipProbability * 100) + "%";
+    }
     return t;
   }
 
-  airConditionLevel(a: string) {
+  public airConditionLevel(a: string) {
     let r: string = "";
     switch (a) {
       case "EXTREME":
@@ -121,16 +123,16 @@ export default class Currentcity extends React.Component<
     return r;
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     // FAZY KSIĘŻYCA !!!
     // https://codepen.io/agm65/pen/mmpvzr/
 
-    let city: City = this.props.city;
+    const city: ICity = this.props.city;
 
     if (city) {
-      let currentAirColor: string = city.airly.current.indexes[0].color;
+      const currentAirColor: string = city.airly.current.indexes[0].color;
 
-      var bgImage = {
+      const bgImage = {
         backgroundImage: "url(/images/" + city.currently.icon + ".jpg)"
       };
 

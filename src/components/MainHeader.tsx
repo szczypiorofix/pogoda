@@ -1,9 +1,9 @@
 import React from "react";
+import { IRefreshData } from "../models";
 import "./Mainheader.css";
-import { RefreshData } from "../models";
 
-export default class MainHeader extends React.Component<RefreshData, {}> {
-  render() {
+export default class MainHeader extends React.Component<IRefreshData, {}> {
+  public render() {
     return (
       <header>
         <div className="header-title">

@@ -1,4 +1,4 @@
-export interface WeatherDailyDetails {
+export interface IWeatherDailyDetails {
   time: number;
   summary: string;
   icon: string;
@@ -40,7 +40,7 @@ export interface WeatherDailyDetails {
   apparentTemperatureMaxTime: number;
 }
 
-export interface WeatherCurrentlyDetails {
+export interface IWeatherCurrentlyDetails {
   time: number;
   summary: string;
   icon: string;
@@ -61,14 +61,14 @@ export interface WeatherCurrentlyDetails {
   ozone: number;
 }
 
-export interface WeatherDaily {
+export interface IWeatherDaily {
   summary: string;
   icon: string;
   name: string;
-  data: WeatherDailyDetails[];
+  data: IWeatherDailyDetails[];
 }
 
-export interface AirlyCurrentIndexes {
+export interface IAirlyCurrentIndexes {
   name: string;
   value: number;
   level: string;
@@ -77,32 +77,32 @@ export interface AirlyCurrentIndexes {
   color: string;
 }
 
-export interface AirlyCurrentValues {
+export interface IAirlyCurrentValues {
   name: string;
   value: number;
 }
 
-export interface AirlyCurrent {
-  indexes: AirlyCurrentIndexes[];
-  values: AirlyCurrentValues[];
+export interface IAirlyCurrent {
+  indexes: IAirlyCurrentIndexes[];
+  values: IAirlyCurrentValues[];
 }
 
-export interface Airly {
-  current: AirlyCurrent;
+export interface IAirly {
+  current: IAirlyCurrent;
 }
 
-export interface City {
+export interface ICity {
   latitude: number;
   longitude: number;
   timezone: string;
-  daily: WeatherDaily;
+  daily: IWeatherDaily;
   name: string;
   summary: string;
-  airly: Airly;
-  currently: WeatherCurrentlyDetails;
+  airly: IAirly;
+  currently: IWeatherCurrentlyDetails;
 }
 
-export interface APOD {
+export interface IAPOD {
   copyright: string;
   url: string;
   title: string;
@@ -112,15 +112,15 @@ export interface APOD {
   date: string;
 }
 
-export interface CommonData {
-  weatherData: City[];
+export interface ICommonData {
+  weatherData: ICity[];
   currentCity: number;
-  apod: APOD;
+  apod: IAPOD;
   date: string;
   time: string;
   refresh: boolean;
 }
 
-export interface RefreshData {
+export interface IRefreshData {
   onRefresh: () => void;
 }

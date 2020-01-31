@@ -1,12 +1,12 @@
 import React from "react";
+import { IOtherCitiesInterface } from "../models";
 import "./Othercities.css";
-import { OtherCitiesInterface } from "../models";
 
 export default class OtherCities extends React.Component<
-  OtherCitiesInterface,
+  IOtherCitiesInterface,
   {}
 > {
-  render(): JSX.Element {
+  public render(): JSX.Element {
     // const { onCityChange } = this.props;
     const onCityChange = this.props.onCityChange;
     return (

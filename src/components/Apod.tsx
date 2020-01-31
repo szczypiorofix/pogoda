@@ -1,11 +1,11 @@
 import React from "react";
-import { APOD } from "../models/WeatherData";
+import { IAPOD } from "../models/WeatherData";
 import "./Apod.css";
 
 // LIVE STREAM! https://www.ustream.tv/embed/17074538?v=3&wmode=direct&autoplay=true
 
-export default class Apod extends React.Component<APOD, {}> {
-  pictureOrVideo(p: APOD) {
+export default class Apod extends React.Component<IAPOD, {}> {
+  public pictureOrVideo(p: IAPOD) {
     if (p.url.endsWith("jpg") || p.url.endsWith("png")) {
       return <img src={p.url} className="apod-image" alt={p.title} />;
     } else {
@@ -29,8 +29,8 @@ export default class Apod extends React.Component<APOD, {}> {
     }
   }
 
-  render(): JSX.Element {
-    if (this.props.title)
+  public render(): JSX.Element {
+    if (this.props.title) {
       return (
         <div className="card">
           <div className="apod-div">
@@ -52,6 +52,7 @@ export default class Apod extends React.Component<APOD, {}> {
           </div>
         </div>
       );
+    } 
     return <div></div>;
   }
 }
