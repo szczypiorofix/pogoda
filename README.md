@@ -2,6 +2,9 @@
 
 Weather forecast application in Poland.
 
+## Latest build
+[![CircleCI](https://circleci.com/gh/szczypiorofix/pogoda/tree/master.svg?style=svg)](https://circleci.com/gh/szczypiorofix/pogoda/tree/master)
+
 ## Description
 
 This app shows a 7-day weather forecast for 10 cities in Poland. It also shows the current state of air cleanness in a chosen city.

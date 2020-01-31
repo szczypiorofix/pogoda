@@ -1,7 +1,6 @@
 var FtpDeploy = require('ftp-deploy');
 var ftpDeploy = new FtpDeploy();
      
-// Client app deploy config
 var reactAppConfig = {
     user: process.env.FTPUSER,
     password: process.env.FTPPASS,
@@ -13,13 +12,11 @@ var reactAppConfig = {
     include: ['*']
 }
 
-
 // ftpDeploy.on('uploaded', function(data) {
 //     console.log(data);
 // });
 
-
 ftpDeploy.deploy(reactAppConfig, function(err, res) {
     if (err) console.log(err)
-    else console.log('Upload React app: done: '+res);
+    else console.log('Upload React app: done: ' + res);
 });
