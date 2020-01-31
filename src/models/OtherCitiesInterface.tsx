@@ -1,3 +1,3 @@
-export interface OtherCitiesInterface {
+export interface IOtherCitiesInterface {
   onCityChange: (city: number) => void;
 }

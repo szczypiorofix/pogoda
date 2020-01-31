@@ -5,10 +5,17 @@ jobs:
        - image: circleci/node:latest
      steps:
        - checkout
+       - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
        - run: npm install
-       - run: npm run format
-       - run: npm run build
+       - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+           - ./node_modules
        - run: git log --oneline --decorate > public/changelog.txt
+       - run: npm run format
+       - run: npm run lint
+       - run: npm run build
        - run: node deploy_app.js
 
 workflows:

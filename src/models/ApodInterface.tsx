@@ -1,4 +1,4 @@
-export interface ApodInterface {
+export interface IApodInterface {
   copyright: string;
   title: string;
   url: string;

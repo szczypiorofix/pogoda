@@ -2,17 +2,17 @@ import React from "react";
 
 import "./App.css";
 
+import Speech from "speak-tts";
+import Apod from "./components/Apod";
+import CurrentCity from "./components/CurrentCity";
 import Mainheader from "./components/MainHeader";
 import OtherCities from "./components/OtherCities";
-import CurrentCity from "./components/CurrentCity";
-import Apod from "./components/Apod";
-import { City, CommonData } from "./models";
-import Speech from "speak-tts";
+import { ICity, ICommonData } from "./models";
 
-export default class App extends React.Component<{}, CommonData> {
-  speech: any;
+export default class App extends React.Component<{}, ICommonData> {
+  public speech: any;
 
-  state: Readonly<CommonData> = {
+  public state: Readonly<ICommonData> = {
     weatherData: [],
     currentCity: 0,
     date: "",
@@ -45,7 +45,7 @@ export default class App extends React.Component<{}, CommonData> {
       });
   }
 
-  onCityChange = (city: number) => {
+  public onCityChange = (city: number) => {
     this.speech.cancel();
     let r: string = "";
     switch (this.state.weatherData[city].airly.current.indexes[0].level) {
@@ -73,14 +73,14 @@ export default class App extends React.Component<{}, CommonData> {
     }
     let stopni: string =
       Math.round(this.state.weatherData[city].currently.temperature) + "";
-    if (stopni.endsWith("1")) stopni = "stopień";
-    else if (
-      stopni.endsWith("2") ||
-      stopni.endsWith("3") ||
-      stopni.endsWith("4")
-    )
+    if (stopni.endsWith("1")) {
+      stopni = "stopień";
+    }
+    else if (stopni.endsWith("2") || stopni.endsWith("3") || stopni.endsWith("4")) {
       stopni = "stopnie";
-    else stopni = "stopni";
+    } else {
+      stopni = "stopni";
+    }
 
     this.speech.speak({
       text:
@@ -99,14 +99,14 @@ export default class App extends React.Component<{}, CommonData> {
     });
   };
 
-  async getData() {
+  public async getData() {
     try {
       const response = await fetch(
         "https://pogoda.wroblewskipiotr.pl/weather.json"
       );
       if (response.ok) {
-        let resp: any = await response.json();
-        var cities: City[] = resp.cities;
+        const resp: any = await response.json();
+        const cities: ICity[] = resp.cities;
         this.setState({
           weatherData: cities,
           apod: resp.apod,
@@ -122,7 +122,7 @@ export default class App extends React.Component<{}, CommonData> {
     }
   }
 
-  onRefresh = () => {
+  public onRefresh = () => {
     this.speech.cancel();
     // console.log("Refresh!");
     this.speech.speak({
@@ -131,11 +131,11 @@ export default class App extends React.Component<{}, CommonData> {
     this.getData();
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     this.getData();
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     if (this.state && this.state.weatherData) {
       return (
         <div className="App">

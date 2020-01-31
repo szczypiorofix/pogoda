@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+# project specific files
 config.ini
 weather.json
 

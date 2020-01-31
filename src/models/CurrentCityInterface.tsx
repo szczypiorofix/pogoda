@@ -1,7 +1,7 @@
-import { City } from "./WeatherData";
+import { ICity } from "./WeatherData";
 
-export interface CurrentCityInterface {
-  city: City;
+export interface ICurrentCityInterface {
+  city: ICity;
   date: string;
   time: string;
 }
