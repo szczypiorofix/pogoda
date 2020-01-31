@@ -8,7 +8,7 @@ var reactAppConfig = {
     host: process.env.FTPHOST,
     port: 21,
     localRoot: __dirname + "/build/",
-    remoteRoot: '/public_htmls/',
+    remoteRoot: '/public_html/',
     deleteRemote: false,
     include: ['*']
 }

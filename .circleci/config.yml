@@ -7,7 +7,7 @@ jobs:
        - checkout
        - add_ssh_keys:
           fingerprints:
-            - "3d:fc:55:8b:a0:33:ab:93:c7:86:6d:22:6f:07:2d:6e"
+            - "19:f9:c7:4d:97:32:ee:96:84:d2:20:df:10:71:72:7f"
        - run: npm install
        - run: npm run format
        - run: npm run build
