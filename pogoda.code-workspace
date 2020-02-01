@@ -9,8 +9,8 @@
 			"compress": true,
 			"sourceMap": true
 		},
-		"editor.fontFamily": "Noto Mono, monospace",
-		"editor.lineHeight": 16,
+		"editor.fontFamily": "Space Mono, Noto Mono, monospace",
+		"editor.lineHeight": 17,
 		"editor.fontLigatures": true,
 		"editor.mouseWheelZoom": true,
 		"editor.cursorWidth": 8,
