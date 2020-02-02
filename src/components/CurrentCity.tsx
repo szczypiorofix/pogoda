@@ -9,7 +9,7 @@ import {
   IWeatherCurrentlyDetails,
   IWeatherDailyDetails
 } from "../models";
-import "./Currentcity.css";
+import "./Currentcity.scss";
 
 interface ICurrentDay {
   day: number;
@@ -117,7 +117,7 @@ export default class Currentcity extends React.Component<
         r = "BARDZO DOBRY";
         break;
       default:
-        r = "DUNNO";
+        r = "BRAK DANYCH";
         break;
     }
     return r;

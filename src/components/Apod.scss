@@ -1,5 +1,4 @@
-@import "../App.less";
-
+@import "../App";
 
 
 div.apod-div {
@@ -12,36 +11,43 @@ div.apod-div {
         display: flex;
         flex-direction: row;
         align-content: stretch;
-        @media @tablet, @mobile {
+        @media only screen and (min-width: $widthDektopMin) {
             flex-direction: column;
             align-items: stretch;
         }
+        // @media $tablet, @mobile {
+        //     flex-direction: column;
+        //     align-items: stretch;
+        // }
         div.image-div { 
             flex-basis: auto;
             margin: 10px auto;
-            @media @desktop {
+            @media only screen and (min-width: $widthDektopMin) {
                 padding: 10px;
             }
+            // @media $desktop {
+            //     padding: 10px;
+            // }
             img.apod-image {
                 width: 100%;
                 height: auto;
                 max-width: 760px;
-                .boxShadow(1px 1px 6px 0 rgba(0, 0, 0, 0.75));
+                box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.75);
             }
         }
         div.description-div {
             line-height: 28px;
             flex-basis: 50%;
-            @media @desktop {
+            @media only screen and (min-width: $widthDektopMin) {
                 h3 {
                     margin-top: 0;
                 }
             }
             padding: 10px;
-            @media @tablet {
+            @media only screen and (min-width: $widthTabletMin) and (max-width: $widthTabletMax) {
                 width: 95%;
             }
-            @media @mobile {
+            @media only screen and (max-width: $widthMobileMax) {
                 width: 100%;
             }
             p {

@@ -1,10 +1,10 @@
-@import "../App.less";
+@import "../App";
 
 
 header {
-    background-color: @accentDarkColor;
-    color: @textMainColorLight;
-    .boxShadow(2px 2px 5px 0px @accentGray);
+    background-color: $accentDarkColor;
+    color: $textMainColorLight;
+    box-shadow: 2px 2px 5px 0px $accentGray;
     position: relative;
     div.header-title {
         font-size: 22px;
