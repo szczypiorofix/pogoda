@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap&subset=latin-ext');
+
+$backgroundColor: #E1E1E1;
+$textMainColor: #262626;
+$textMainColorLight: #FAFAFA;
+$accentDarkColor: #303F9F;
+$accentLightColor: #3F51B5;
+$accentGray: rgba(136,136,136,0.73);
+
+$breakpoints: (phone: 640px, 
+               tablet: 768px, 
+               desktop: 1024px) !default;
+
+$widthDektopMin: 1280px;
+$widthTabletMax: 1279px;
+$widthTabletMin: 600px;
+$widthMobileMax: 599px;
+
+// @media only screen and (min-width: $widthDektopMin)
+// @media only screen and (min-width: $widthTabletMin) and (max-width: $widthTabletMax)
+// @media only screen and (max-width: $widthMobileMax)
+
+// $desktop: "only screen and (min-width: 1280px)";
+// $tablet:  "only screen and (min-width: 600px) and (max-width: 1279px)";
+// $mobile:  "only screen and (max-width: 599px)";
+
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+div.card {
+    box-shadow: 2px 2px 5px 0px $accentGray;
+    margin: 10px;
+    background-color: $textMainColorLight;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: $backgroundColor;
+    color: $textMainColor;
+}

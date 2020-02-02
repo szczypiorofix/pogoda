@@ -1,14 +1,14 @@
-@import "../App.less";
+@import "../App";
 
 
 div.card.citypanel {
     background: url("/images/bg.jpg");
-    background-color: @accentDarkColor;
+    background-color: $accentDarkColor;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    color: @textMainColorLight;
+    color: $textMainColorLight;
     z-index: 0;
     div.bg-div {
         opacity: 0.7;
@@ -18,15 +18,22 @@ div.card.citypanel {
         right: 0;
         bottom: 0;
         z-index: -1;
-        background-color: @accentDarkColor;
+        background-color: $accentDarkColor;
     }
     div.airly {
         padding: 0 10px;
-        p span {
-            padding: 5px 15px;
-            border: none;
-            border-radius: 3px;
-            font-weight: 700;
+        p {
+            &:first-child {
+                padding: 10px 0;
+            }
+            padding: 0; 
+            span {
+                padding: 5px 15px;
+                display: inline-block;
+                border: none;
+                border-radius: 3px;
+                font-weight: 700;
+        }
         }
         p > a img {
             max-width: 60px;
@@ -36,20 +43,20 @@ div.card.citypanel {
     div.current-city {        
         display: grid;
         grid-template-rows: auto;
-        @media @desktop {
+        @media only screen and (min-width: $widthDektopMin) {
             grid-template-columns: auto auto auto;
             grid-template-areas: 
             "icon summary summary"
             "icon details1 details2";
         }
-        @media @tablet {
+        @media only screen and (min-width: $widthTabletMin) and (max-width: $widthTabletMax) {
             grid-template-columns: auto auto;
             grid-template-areas: 
             "icon summary"
             "icon details1"
             "icon details2";
         }
-        @media @mobile {
+        @media only screen and (max-width: $widthMobileMax) {
             grid-template-columns: auto;
             grid-template-areas: 
             "icon"
@@ -86,12 +93,12 @@ div.card.citypanel {
             font-size: 18px;
             font-weight: bold;
             justify-self: start;
-            @media @mobile {
+            @media only screen and (max-width: $widthMobileMax) {
                 justify-self: center;
             }
         }
         div.city-weather {
-            @media @mobile {
+            @media only screen and (max-width: $widthMobileMax) {
                 padding: 0 4%;
             }
             p {
@@ -107,8 +114,8 @@ div.card.citypanel {
                 }
                 &.night {
                     span.tempInd {
-                        background-color: darken(@accentDarkColor, 20%);
-                        color: @textMainColorLight;
+                        background-color: darken($accentDarkColor, 20%);
+                        color: $textMainColorLight;
                         opacity: 0.8;
                         border: none;
                         border-radius: 2px;
@@ -133,7 +140,7 @@ div.card.citypanel {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        border-block-start: 1px @textMainColorLight solid;
+        border-block-start: 1px $textMainColorLight solid;
         div.day {
             padding: 10px;
             display: flex;
@@ -148,7 +155,7 @@ div.card.citypanel {
             svg.weekday-icon {
                 width: 5em;
                 height: 5em;
-                color: @textMainColor;
+                color: $textMainColor;
             }
             p.weekday-date {
                 font-size: 12px;

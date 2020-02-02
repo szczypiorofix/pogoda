@@ -1,4 +1,4 @@
-@import '../App.less';
+@import '../App';
 
 
 div .othercities {
@@ -7,15 +7,12 @@ div .othercities {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        color: @textMainColor;
-        // background-color: @accentGray;
+        color: $textMainColor;
         
         div.othercitiesBlock {
-            // transition: 0.5s;
             border-radius: 2px;
             border: none;
             padding: 5px 10px;
-            // background-color: @accentGray;
             cursor: pointer;
 
             button {
@@ -28,7 +25,6 @@ div .othercities {
                 outline: none;
                 &:hover {
                     cursor: pointer;
-                    // text-decoration: underline;
                 }
                 
             }

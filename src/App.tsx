@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./App.css";
+import "./App.scss";
 
 import Speech from "speak-tts";
 import Apod from "./components/Apod";
@@ -68,7 +68,7 @@ export default class App extends React.Component<{}, ICommonData> {
         r = "BARDZO DOBRY";
         break;
       default:
-        r = "DUNNO";
+        r = "BRAK DANYCH";
         break;
     }
     let stopni: string =

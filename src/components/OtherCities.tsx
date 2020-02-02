@@ -1,6 +1,6 @@
 import React from "react";
 import { IOtherCitiesInterface } from "../models";
-import "./Othercities.css";
+import "./Othercities.scss";
 
 export default class OtherCities extends React.Component<
   IOtherCitiesInterface,
