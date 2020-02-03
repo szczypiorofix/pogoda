@@ -16,6 +16,7 @@ jobs:
        - run: npm run format
        - run: npm run lint
        - run: npm run build
+       - run: npm test
        - run: node deploy_app.js
 
 workflows:
