@@ -5,10 +5,6 @@
 		}
 	],
 	"settings": {
-		"less.compile": {
-			"compress": true,
-			"sourceMap": true
-		},
 		"editor.fontFamily": "Noto Mono, monospace",
 		"editor.lineHeight": 17,
 		"editor.fontLigatures": true,

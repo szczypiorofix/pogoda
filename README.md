@@ -3,7 +3,7 @@
 Weather forecast application in Poland.
 
 ## Latest build
-![Version](https://img.shields.io/badge/version-1.0.01-blue.svg "Version icon")
+![Version](https://img.shields.io/badge/version-1.0.02-blue.svg "Version icon")
 [![CircleCI](https://circleci.com/gh/szczypiorofix/pogoda/tree/master.svg?style=svg)](https://circleci.com/gh/szczypiorofix/pogoda/tree/master)
 
 ## Description
