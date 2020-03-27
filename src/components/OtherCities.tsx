@@ -7,7 +7,9 @@ export default class OtherCities extends React.Component<
   {}
 > {
   public render(): JSX.Element {
+    
     // const { onCityChange } = this.props;
+
     const onCityChange = this.props.onCityChange;
     return (
       <div className="othercities card">

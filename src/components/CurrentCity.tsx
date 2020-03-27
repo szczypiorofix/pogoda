@@ -27,7 +27,7 @@ export default class Currentcity extends React.Component<
     });
   }
 
-  public skyconIcon(icon: string, w: number, c: string, p: boolean) {
+  public skyconIcon(icon: string, w: number, c: string, p: boolean): JSX.Element {
     return (
       <Skycons
         style={{ width: w + "px", height: w / 2 + "px" }}
@@ -38,11 +38,11 @@ export default class Currentcity extends React.Component<
     );
   }
 
-  public msToKmh(n: number) {
+  public msToKmh(n: number): number {
     return Math.round(n * 3.6);
   }
 
-  public nextDayElement(city: IWeatherDailyDetails, id: number) {
+  public nextDayElement(city: IWeatherDailyDetails, id: number): JSX.Element {
     const calendarStrings = {
       lastDay: "[wczoraj]",
       sameDay: "[dzisiaj]",
@@ -73,7 +73,7 @@ export default class Currentcity extends React.Component<
     );
   }
 
-  public precipitationType(type: IWeatherCurrentlyDetails) {
+  public precipitationType(type: IWeatherCurrentlyDetails): string {
     let t: string;
     switch (type.precipType) {
       case "rain":
@@ -95,7 +95,7 @@ export default class Currentcity extends React.Component<
     return t;
   }
 
-  public airConditionLevel(a: string) {
+  public airConditionLevel(a: string): string {
     let r: string = "";
     switch (a) {
       case "EXTREME":
