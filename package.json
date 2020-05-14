@@ -5,9 +5,9 @@
   "dependencies": {
     "@types/jest": "^24.9.1",
     "ftp-deploy": "^2.3.7",
-    "moment": "^2.24.0",
+    "moment": "^2.25.3",
     "moment-timezone": "^0.5.27",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-iframe": "^1.8.0",
@@ -19,15 +19,15 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.25",
-    "@types/node": "^12.12.34",
-    "@types/react": "^16.9.32",
-    "@types/react-dom": "^16.9.6",
+    "@types/node": "^12.12.39",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
     "eslint": "^6.8.0",
     "prettier": "^1.19.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
