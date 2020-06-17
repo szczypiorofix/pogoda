@@ -2,10 +2,12 @@ import React from "react";
 import { IOtherCitiesInterface } from "../models";
 import "./Othercities.scss";
 
+
 export default class OtherCities extends React.Component<
   IOtherCitiesInterface,
   {}
 > {
+  
   public render(): JSX.Element {
     
     // const { onCityChange } = this.props;

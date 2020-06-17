@@ -9,6 +9,7 @@ import Mainheader from "./components/MainHeader";
 import OtherCities from "./components/OtherCities";
 import { ICity, ICommonData } from "./models";
 
+
 export default class App extends React.Component<{}, ICommonData> {
   public speech: any;
 
@@ -29,6 +30,7 @@ export default class App extends React.Component<{}, ICommonData> {
     refresh: false
   };
 
+
   constructor(props: any) {
     super(props);
     this.speech = new Speech();
@@ -44,6 +46,7 @@ export default class App extends React.Component<{}, ICommonData> {
         console.error("An error occured while initializing : ");
       });
   }
+
 
   public onCityChange = (city: number) => {
     this.speech.cancel();
@@ -99,6 +102,7 @@ export default class App extends React.Component<{}, ICommonData> {
     });
   };
 
+
   public async getData() {
     try {
       const response = await fetch(
@@ -122,6 +126,7 @@ export default class App extends React.Component<{}, ICommonData> {
     }
   }
 
+
   public onRefresh = () => {
     this.speech.cancel();
     // console.log("Refresh!");
@@ -131,10 +136,12 @@ export default class App extends React.Component<{}, ICommonData> {
     this.getData();
   };
 
+
   public componentDidMount() {
     this.getData();
   }
 
+  
   public render(): JSX.Element {
     if (this.state && this.state.weatherData) {
       return (

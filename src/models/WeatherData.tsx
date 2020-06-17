@@ -40,6 +40,7 @@ export interface IWeatherDailyDetails {
   apparentTemperatureMaxTime: number;
 }
 
+
 export interface IWeatherCurrentlyDetails {
   time: number;
   summary: string;
@@ -61,12 +62,14 @@ export interface IWeatherCurrentlyDetails {
   ozone: number;
 }
 
+
 export interface IWeatherDaily {
   summary: string;
   icon: string;
   name: string;
   data: IWeatherDailyDetails[];
 }
+
 
 export interface IAirlyCurrentIndexes {
   name: string;
@@ -77,19 +80,23 @@ export interface IAirlyCurrentIndexes {
   color: string;
 }
 
+
 export interface IAirlyCurrentValues {
   name: string;
   value: number;
 }
+
 
 export interface IAirlyCurrent {
   indexes: IAirlyCurrentIndexes[];
   values: IAirlyCurrentValues[];
 }
 
+
 export interface IAirly {
   current: IAirlyCurrent;
 }
+
 
 export interface ICity {
   latitude: number;
@@ -102,6 +109,7 @@ export interface ICity {
   currently: IWeatherCurrentlyDetails;
 }
 
+
 export interface IAPOD {
   copyright: string;
   url: string;
@@ -112,6 +120,7 @@ export interface IAPOD {
   date: string;
 }
 
+
 export interface ICommonData {
   weatherData: ICity[];
   currentCity: number;
@@ -120,6 +129,7 @@ export interface ICommonData {
   time: string;
   refresh: boolean;
 }
+
 
 export interface IRefreshData {
   onRefresh: () => void;

@@ -4,6 +4,7 @@ import "./Apod.scss";
 
 // LIVE STREAM! https://www.ustream.tv/embed/17074538?v=3&wmode=direct&autoplay=true
 
+
 export default class Apod extends React.Component<IAPOD, {}> {
   public pictureOrVideo(p: IAPOD) {
     if (p.url.endsWith("jpg") || p.url.endsWith("png")) {
@@ -29,6 +30,7 @@ export default class Apod extends React.Component<IAPOD, {}> {
     }
   }
 
+  
   public render(): JSX.Element {
     if (this.props.title) {
       return (

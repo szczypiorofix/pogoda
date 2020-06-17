@@ -2,6 +2,7 @@ import React from "react";
 import { IRefreshData } from "../models";
 import "./Mainheader.scss";
 
+
 export default class MainHeader extends React.Component<IRefreshData, {}> {
   public render(): JSX.Element {
     return (

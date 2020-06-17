@@ -11,6 +11,7 @@ import {
 } from "../models";
 import "./Currentcity.scss";
 
+
 interface ICurrentDay {
   day: number;
 }
@@ -27,6 +28,7 @@ export default class Currentcity extends React.Component<
     });
   }
 
+
   public skyconIcon(icon: string, w: number, c: string, p: boolean): JSX.Element {
     return (
       <Skycons
@@ -38,9 +40,11 @@ export default class Currentcity extends React.Component<
     );
   }
 
+
   public msToKmh(n: number): number {
     return Math.round(n * 3.6);
   }
+
 
   public nextDayElement(city: IWeatherDailyDetails, id: number): JSX.Element {
     const calendarStrings = {
@@ -73,6 +77,7 @@ export default class Currentcity extends React.Component<
     );
   }
 
+
   public precipitationType(type: IWeatherCurrentlyDetails): string {
     let t: string;
     switch (type.precipType) {
@@ -94,6 +99,7 @@ export default class Currentcity extends React.Component<
     }
     return t;
   }
+
 
   public airConditionLevel(a: string): string {
     let r: string = "";
@@ -123,6 +129,7 @@ export default class Currentcity extends React.Component<
     return r;
   }
 
+  
   public render(): JSX.Element {
     // FAZY KSIĘŻYCA !!!
     // https://codepen.io/agm65/pen/mmpvzr/
